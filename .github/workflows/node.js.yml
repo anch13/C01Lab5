@@ -32,6 +32,5 @@
                 uses: supercharge/mongodb-github-action@1.10.0
                 with:
                   mongodb-version: ${{ matrix.mongodb-version }}
-              - run: mongod --dbpath=./data/db
               - run: npm run dev
               - run: npm test
