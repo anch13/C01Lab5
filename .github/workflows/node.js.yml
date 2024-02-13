@@ -36,7 +36,6 @@
     build:
           name: Backend test
           runs-on: ubuntu-latest
-          needs: my_first_job
 
           defaults:
               run:
