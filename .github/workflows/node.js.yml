@@ -32,8 +32,7 @@
                 uses: supercharge/mongodb-github-action@1.10.0
                 with:
                   mongodb-version: ${{ matrix.mongodb-version }}
-              - run: (npm run dev)
-              - run: npm test
+              - run: npm run dev & npm test
   
     # my_first_job:
     #   name: test1
