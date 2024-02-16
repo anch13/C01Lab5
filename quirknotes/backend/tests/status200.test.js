@@ -45,9 +45,9 @@ test("/getAllNotes - Return list of two notes for getAllNotes", async () => {
   });
   expect(deleteAllNotesRes.status).toBe(200);
 
-  const title = "NoteTitleTest1";
-  const content = "NoteTitleContent1";
-  const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
+  var title = "NoteTitleTest1";
+  var content = "NoteTitleContent1";
+  var postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -57,7 +57,7 @@ test("/getAllNotes - Return list of two notes for getAllNotes", async () => {
       content: content,
     }),
   });
-  const postNoteBody = await postNoteRes.json();
+  var postNoteBody = await postNoteRes.json();
   expect(postNoteRes.status).toBe(200);
   expect(postNoteBody.response).toBe("Note added succesfully.");
 
@@ -81,6 +81,8 @@ test("/getAllNotes - Return list of two notes for getAllNotes", async () => {
     method: "GET",
   });
   expect(getAllNotesRes.status).toBe(200);
+  const getAllNotesBody = await getAllNotesRes.json();
+  console.log(getAllNotesBody);
   expect(getAllNotesBody.response.length).toBe(2);
 
 
@@ -112,8 +114,8 @@ test("/deleteNote - Delete a note", async () => {
 });
 
 test("/patchNote - Patch with content and title", async () => {
-  const title = "patchTestp1";
-  const content = "patchTestp1";
+  var title = "patchTestp1";
+  var content = "patchTestp1";
   const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
     method: "POST",
     headers: {
@@ -150,8 +152,8 @@ test("/patchNote - Patch with content and title", async () => {
 
 test("/patchNote - Patch with just title", async () => {
   // Code here
-  const title = "patchTestp1";
-  const content = "patchTestp1";
+  var title = "patchTestp1";
+  var content = "patchTestp1";
   const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
     method: "POST",
     headers: {
@@ -187,8 +189,8 @@ test("/patchNote - Patch with just title", async () => {
 
 test("/patchNote - Patch with just content", async () => {
   // Code here
-  const title = "patchTestp1";
-  const content = "patchTestp1";
+  var title = "patchTestp1";
+  var content = "patchTestp1";
   const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
     method: "POST",
     headers: {
@@ -224,6 +226,10 @@ test("/patchNote - Patch with just content", async () => {
 
 test("/deleteAllNotes - Delete one note", async () => {
   // Code here
+  var deleteAllNotesRes = await fetch(`${SERVER_URL}/deleteAllNotes`, {
+    method: "DELETE",
+  });
+  expect(deleteAllNotesRes.status).toBe(200);
   const title = "1";
   const content = "1";
   const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
@@ -240,7 +246,7 @@ test("/deleteAllNotes - Delete one note", async () => {
   expect(postNoteRes.status).toBe(200);
   expect(postNoteBody.response).toBe("Note added succesfully.");
 
-  const deleteAllNotesRes = await fetch(`${SERVER_URL}/deleteAllNotes`, {
+  deleteAllNotesRes = await fetch(`${SERVER_URL}/deleteAllNotes`, {
     method: "DELETE",
   });
   const deleteAllNotesBody = await deleteAllNotesRes.json();
@@ -251,9 +257,14 @@ test("/deleteAllNotes - Delete one note", async () => {
 
 test("/deleteAllNotes - Delete three notes", async () => {
   // Code here
-  const title = "1";
-  const content = "1";
-  const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
+  var deleteAllNotesRes = await fetch(`${SERVER_URL}/deleteAllNotes`, {
+    method: "DELETE",
+  });
+  var deleteAllNotesBody = await deleteAllNotesRes.json();
+  expect(deleteAllNotesRes.status).toBe(200);
+  var title = "1";
+  var content = "1";
+  var postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -263,7 +274,7 @@ test("/deleteAllNotes - Delete three notes", async () => {
       content: content,
     }),
   });
-  const postNoteBody = await postNoteRes.json();
+  var postNoteBody = await postNoteRes.json();
   expect(postNoteRes.status).toBe(200);
   expect(postNoteBody.response).toBe("Note added succesfully.");
   title = "2";
@@ -297,10 +308,10 @@ test("/deleteAllNotes - Delete three notes", async () => {
   expect(postNoteRes.status).toBe(200);
   expect(postNoteBody.response).toBe("Note added succesfully.");
 
-  const deleteAllNotesRes = await fetch(`${SERVER_URL}/deleteAllNotes`, {
+  deleteAllNotesRes = await fetch(`${SERVER_URL}/deleteAllNotes`, {
     method: "DELETE",
   });
-  const deleteAllNotesBody = await deleteAllNotesRes.json();
+  deleteAllNotesBody = await deleteAllNotesRes.json();
   expect(deleteAllNotesRes.status).toBe(200);
   expect(deleteAllNotesBody.response).toBe("3 note(s) deleted.");
 });
@@ -333,7 +344,7 @@ test("/updateNoteColor - Update color of a note to red (#FF0000)", async () => {
       color: "#FF0000"
     }),
   });
-  expect(patchNoteRes.status).toBe(200);
+  expect(updateNoteColorRes.status).toBe(200);
   const updateBody = await updateNoteColorRes.json();
   expect(updateBody.message).toBe("Note color updated successfully.");
 
